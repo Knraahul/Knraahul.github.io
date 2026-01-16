@@ -1,0 +1,1788 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Portfolio of Raahul Narayana Reddy K - Data Analyst / Data Scientist." />
+  <title>Raahul Narayana Reddy K | Portfolio</title>
+
+  <style>
+/* Dark elegant, recruiter-friendly */
+:root{
+  --bg: #0b0d10;
+  --panel: rgba(255,255,255,0.06);
+  --panel2: rgba(255,255,255,0.085);
+  --text: #f3f6fb;
+  --muted: rgba(243,246,251,0.72);
+  --muted2: rgba(243,246,251,0.55);
+  --border: rgba(255,255,255,0.10);
+  --border2: rgba(255,255,255,0.14);
+  --accent: #65d6c4;
+  --accent2: #7aa7ff;
+  --shadow: 0 18px 60px rgba(0,0,0,0.40);
+  --radius: 18px;
+  --radius2: 26px;
+  --container: 1100px;
+
+  /* ===== Projects (DIAGONAL FLOW + BIG RECT CARDS) ===== */
+  --card-w: 520px;   /* bigger + rectangular */
+  --card-h: 300px;   /* bigger + rectangular */
+  --diag-step: 130px; /* moved right cards a bit LEFT (was 160) */
+  --diag-gap: 80px;   /* vertical spacing */
+  --line-pad: 18px;   /* push line endpoints outside card edges */
+}
+
+*{ box-sizing: border-box; }
+html,body{ margin:0; padding:0; }
+/* CHANGE #1: prevent tiny horizontal scroll from SVG/transforms */
+html, body{ overflow-x: hidden; }
+
+body{
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  background: radial-gradient(1200px 700px at 15% -5%, rgba(122,167,255,0.18), transparent 55%),
+              radial-gradient(900px 600px at 85% 0%, rgba(101,214,196,0.16), transparent 55%),
+              var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+}
+
+a{ color: inherit; text-decoration: none; }
+a:hover{ text-decoration: underline; }
+
+.container{
+  width: min(var(--container), calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(14px);
+  background: rgba(11,13,16,0.55);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 16px;
+  padding: 14px 0;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+.brand-dot{
+  width: 10px; height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  box-shadow: 0 0 0 6px rgba(101,214,196,0.12);
+}
+.brand-text{ opacity: 0.95; }
+
+.nav{
+  display:flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.nav a{
+  color: var(--muted);
+  font-size: 14px;
+}
+.nav a:hover{ color: var(--text); text-decoration:none; }
+
+.header-cta{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+}
+.hamburger{
+  display:none;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px;
+  cursor: pointer;
+}
+.hamburger span{
+  display:block;
+  width: 20px;
+  height: 2px;
+  background: var(--text);
+  margin: 4px 0;
+  opacity: 0.85;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(101,214,196,0.92), rgba(122,167,255,0.92));
+  color: #051014;
+  font-weight: 800;
+  font-size: 15px;
+  border: 0;
+  box-shadow: 0 10px 30px rgba(101,214,196,0.18);
+  transition: transform 220ms ease, filter 220ms ease, box-shadow 220ms ease;
+}
+.btn:hover{
+  text-decoration:none;
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px rgba(101,214,196,0.22);
+}
+
+.btn-ghost{
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border2);
+  box-shadow: none;
+  font-weight: 750;
+}
+.btn-ghost:hover{
+  text-decoration:none;
+  border-color: rgba(255,255,255,0.24);
+  transform: translateY(-1px);
+}
+
+/* Icon-only buttons (GitHub/LinkedIn) */
+.icon-btn{
+  width: 62px;
+  height: 48px;
+  padding: 0;
+  border-radius: 16px;
+}
+.icon-btn svg{ width: 22px; height: 22px; opacity: 0.95; }
+
+/* Hover “closer” effect for cards/buttons */
+.hover-lift{
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+}
+.hover-lift:hover{
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,0.20);
+  box-shadow: 0 18px 55px rgba(0,0,0,0.45);
+}
+
+/* Hero */
+.hero{
+  position: relative;
+  padding: 62px 0 26px;
+  overflow:hidden;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns: 1.35fr 0.85fr;
+  gap: 22px;
+  align-items: start;
+}
+.kicker{
+  display:inline-block;
+  color: var(--muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin: 0 0 10px;
+}
+.hero h1{
+  font-size: clamp(34px, 4vw, 50px);
+  line-height: 1.08;
+  margin: 0 0 12px;
+  letter-spacing: 0.2px;
+}
+.lede{
+  margin: 0 0 18px;
+  color: var(--muted);
+  max-width: 70ch;
+}
+
+.hero-actions{
+  display:flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  align-items:center;
+}
+
+.hero-meta{ display:flex; gap: 10px; flex-wrap: wrap; }
+
+.pill{
+  font-size: 13px;
+  color: var(--muted);
+  padding: 9px 12px;
+  border: 1px solid var(--border2);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.03);
+  transition: border-color 220ms ease, transform 220ms ease;
+}
+.pill:hover{
+  border-color: rgba(255,255,255,0.22);
+  transform: translateY(-1px);
+}
+
+.hero-card{
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+  border-radius: var(--radius2);
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+.quick{ display:grid; gap: 12px; }
+.quick-label{ margin:0; font-size: 12px; color: var(--muted2); }
+.quick-value{ margin:4px 0 0; color: var(--text); font-weight: 650; }
+.quick-value a{ text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); }
+.quick-value a:hover{ text-decoration-color: rgba(255,255,255,0.55); }
+
+.divider{
+  height: 1px;
+  background: var(--border);
+  margin: 16px 0;
+}
+
+.section{ padding: 28px 0; }
+.section-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.section-head h2{
+  margin:0;
+  font-size: 22px;
+  letter-spacing: 0.2px;
+}
+.section-sub{
+  margin: 8px 0 0;
+  color: var(--muted);
+  text-align: right;
+  max-width: 62ch;
+}
+.muted{ color: var(--muted); }
+.muted.small{ font-size: 13px; }
+.small{ font-size: 13px; }
+
+.card{
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+.card h3{ margin:0 0 10px; font-size: 16px; }
+.card p{ margin: 0 0 10px; }
+
+.grid-3{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.grid-2{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.chips{
+  display:flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.chip{
+  font-size: 12px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.03);
+  color: var(--muted);
+}
+
+/* Avatar */
+.avatar-wrap{ display:flex; justify-content:flex-end; margin-bottom: 10px; }
+.avatar{
+  width: 84px; height: 84px; border-radius: 999px;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.40);
+}
+
+.hero-glow{
+  position:absolute;
+  inset: -200px -200px auto -200px;
+  height: 420px;
+  background: radial-gradient(closest-side, rgba(101,214,196,0.22), transparent 68%);
+  pointer-events:none;
+  opacity: 0.9;
+}
+
+/* Scroll reveal (appear + disappear) */
+.reveal{
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 760ms ease, transform 760ms ease;
+  will-change: opacity, transform;
+}
+.reveal.visible{ opacity: 1; transform: translateY(0); }
+
+/* ===== Projects (DIAGONAL FLOW WITH EXTERNAL LINES) ===== */
+.projects-flow{
+  position: relative;
+  padding: 10px 0 0;
+}
+
+/* SVG line layer (behind cards) */
+.flow-lines{
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* cards sit above lines */
+.flow-list{
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: var(--diag-gap);
+  padding: 10px 0 6px;
+}
+
+.flow-item{
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+
+/* left card row */
+.flow-item.left{ justify-content: flex-start; }
+/* right card row shifted diagonally */
+.flow-item.right{ justify-content: flex-end; }
+
+/* diagonal offset so it looks “diagonal” */
+.flow-item.right .flow-card{
+  transform: translateX(var(--diag-step));
+}
+.flow-item.left .flow-card{
+  transform: translateX(0);
+}
+
+/* Card wrapper used for measurements */
+.flow-card{
+  width: var(--card-w);
+  height: var(--card-h);
+  position: relative;
+}
+
+/* Flip card */
+.project-card{
+  width: 100%;
+  height: 100%;
+  perspective: 1200px;
+}
+.project-card button.project-toggle{
+  all: unset;
+  display:block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.project-shell{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius2);
+}
+.project-inner{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 720ms cubic-bezier(.2,.8,.2,1);
+  border-radius: var(--radius2);
+}
+.project-card:hover .project-inner,
+.project-card.flipped .project-inner,
+.project-card:focus-within .project-inner{
+  transform: rotateY(180deg);
+}
+
+.project-face{
+  position:absolute;
+  inset: 0;
+  border-radius: var(--radius2);
+  overflow:hidden;
+  backface-visibility: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: var(--shadow);
+}
+
+/* FRONT */
+.project-front{
+  background: rgba(255,255,255,0.04);
+}
+
+/* full image without cuts:
+   - blurred "fill" layer
+   - main "contain" layer on top */
+.project-cover-blur{
+  position:absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(10px) saturate(1.05) contrast(1.02);
+  transform: scale(1.06);
+  opacity: 0.55;
+}
+.project-cover{
+  position:absolute;
+  inset: 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: saturate(1.05) contrast(1.02);
+}
+.project-front::after{
+  content:"";
+  position:absolute;
+  inset: 0;
+  background:
+    radial-gradient(800px 340px at 30% 10%, rgba(122,167,255,0.14), transparent 55%),
+    linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.62));
+}
+
+/* front content: ONLY small skills (no title) */
+.project-front-content{
+  position:absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+  display:flex;
+  align-items:flex-end;
+  justify-content: space-between;
+  gap: 10px;
+  z-index: 2;
+}
+
+.front-pills{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 78%;
+}
+.front-pill{
+  display:inline-flex;
+  align-items:center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: rgba(8,10,14,0.95);
+  background: linear-gradient(135deg, rgba(101,214,196,0.95), rgba(122,167,255,0.92));
+  box-shadow: 0 10px 26px rgba(0,0,0,0.30);
+}
+.front-pill.small{
+  padding: 7px 10px;
+  font-size: 11.5px;
+}
+
+.project-hint{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(243,246,251,0.80);
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.22);
+  padding: 8px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* BACK (fit + no overflow outside card) */
+.project-back{
+  transform: rotateY(180deg);
+  background: rgba(8,10,14,0.95);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.project-back::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.55));
+  pointer-events:none;
+}
+.project-back > *{ position: relative; z-index: 1; }
+
+/* only badges row on top (no back title) */
+.project-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 0;
+}
+.badges{ display:flex; flex-wrap: wrap; gap: 8px; justify-content:flex-end; }
+.badge{
+  font-size: 11px;
+  color: rgba(11,13,16,0.95);
+  background: linear-gradient(135deg, rgba(101,214,196,0.95), rgba(122,167,255,0.90));
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+}
+
+/* description line */
+.project-desc{
+  margin: 0;
+  font-size: 12.5px;
+  color: rgba(243,246,251,0.74);
+  line-height: 1.45;
+}
+
+/* scrollable body so bullets never exceed card */
+.project-body{
+  flex: 1;
+  overflow: auto;
+  padding-right: 6px;
+}
+.project-body::-webkit-scrollbar{ width: 8px; }
+.project-body::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.14);
+  border-radius: 999px;
+}
+.project-body::-webkit-scrollbar-track{ background: transparent; }
+
+.bullets{
+  margin: 0;
+  padding-left: 18px;
+  color: rgba(243,246,251,0.78);
+  font-size: 12.5px;
+}
+.bullets li{ margin: 7px 0; line-height: 1.45; }
+
+/* ===== Experience: same style idea (compact top + small tags) ===== */
+.exp-card{ position: relative; }
+.exp-tags{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content:flex-end;
+}
+.exp-tag{
+  font-size: 11px;
+  font-weight: 900;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.03);
+  color: rgba(243,246,251,0.86);
+}
+.exp-tag.accent{
+  color: rgba(11,13,16,0.95);
+  background: linear-gradient(135deg, rgba(101,214,196,0.95), rgba(122,167,255,0.90));
+  border: 0;
+}
+
+/* ===== Education: add logos + pursuing pill top-right ===== */
+.edu-card{ position: relative; }
+.edu-head{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.edu-logo{
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+}
+.status-pill{
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.03);
+  color: rgba(243,246,251,0.92);
+  font-weight: 900;
+  font-size: 12px;
+}
+.status-pill .dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  box-shadow: 0 0 0 5px rgba(101,214,196,0.10);
+}
+
+/* ===== Contact: match “Find Me” style ===== */
+.contact-hero{
+  text-align:center;
+  margin-bottom: 16px;
+}
+.contact-hero h2{
+  margin: 0 0 8px;
+  font-size: clamp(28px, 3vw, 40px);
+  letter-spacing: 0.2px;
+}
+.contact-hero p{
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.findme-card{
+  border-radius: var(--radius2);
+  padding: 22px;
+}
+.findme-head{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.findme-title{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 900;
+  margin: 0;
+}
+.findme-title .arrow{
+  opacity: 0.9;
+  transform: translateY(1px);
+}
+
+.findme-list{
+  display:grid;
+  gap: 12px;
+  margin: 14px 0 0;
+}
+
+.findme-row{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 16px;
+}
+.findme-row strong{
+  color: var(--muted);
+  font-weight: 700;
+}
+.findme-row a{
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,0.22);
+}
+.findme-row a:hover{
+  text-decoration-color: rgba(255,255,255,0.55);
+}
+
+.icon{
+  width: 18px; height: 18px;
+  flex: 0 0 18px;
+  opacity: 0.9;
+}
+
+.copy-row{
+  display:flex;
+  gap: 10px;
+  align-items:center;
+  margin-top: 16px;
+}
+.copy-row input{
+  flex: 1;
+  padding: 14px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.25);
+  color: var(--text);
+  font-size: 15px;
+}
+.copy-row .btn{
+  height: 48px;
+  border-radius: 16px;
+  padding: 0 18px;
+}
+.sr-only{
+  position:absolute;
+  width:1px;height:1px;
+  padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);
+  white-space:nowrap;border:0;
+}
+
+/* ===== Footer (centered like screenshot) ===== */
+.footer2{
+  padding: 26px 0 34px;
+  border-top: 1px solid var(--border);
+  margin-top: 18px;
+  background: rgba(0,0,0,0.10);
+}
+.footer2-inner{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.footer2-name{
+  margin: 0;
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: 0.2px;
+  opacity: 0.96;
+}
+.footer2-nav{
+  display:flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.footer2-nav a{
+  color: rgba(243,246,251,0.70);
+  font-size: 16px;
+}
+.footer2-nav a:hover{
+  color: rgba(243,246,251,0.92);
+  text-decoration: none;
+}
+
+.footer2-icons{
+  display:flex;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.footer-icon{
+  width: 62px;
+  height: 56px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.03);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow: 0 18px 55px rgba(0,0,0,0.35);
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+}
+.footer-icon:hover{
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 22px 65px rgba(0,0,0,0.45);
+  text-decoration: none;
+}
+.footer-icon svg{ width: 22px; height: 22px; opacity: 0.95; }
+
+.footer2-copy{
+  margin: 6px 0 0;
+  color: rgba(243,246,251,0.60);
+  font-size: 16px;
+}
+
+/* floating back-to-top button (right side) with UP arrow */
+.to-top-float{
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 62px;
+  height: 62px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(11,13,16,0.55);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 55px rgba(0,0,0,0.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 200ms ease, transform 200ms ease, border-color 200ms ease;
+  z-index: 80;
+  color: var(--text);
+}
+.to-top-float.show{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.to-top-float:hover{ border-color: rgba(255,255,255,0.22); }
+.to-top-float svg{
+  width: 22px;
+  height: 22px;
+  opacity: 0.95;
+  stroke: currentColor;
+  stroke-width: 2.5;
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .hero-grid{ grid-template-columns: 1fr; }
+  .grid-3{ grid-template-columns: 1fr; }
+  .grid-2{ grid-template-columns: 1fr; }
+  .nav{ display:none; }
+  .hamburger{ display:inline-block; }
+  .nav.open{
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    left: 0; right: 0;
+    top: 58px;
+    padding: 14px 20px;
+    background: rgba(11,13,16,0.92);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Projects: center cards on mobile and avoid overflow */
+  :root{
+    --card-w: min(92vw, 560px);
+    --card-h: calc(var(--card-w) * 0.62);
+    --diag-step: 0px;
+    --diag-gap: 56px;
+    --line-pad: 14px;
+  }
+  .flow-item{ justify-content: center !important; }
+  .flow-item.right .flow-card{ transform: none; }
+
+  .section-sub{ text-align: left; margin-top: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ scroll-behavior: auto !important; }
+  .reveal{ transition: none !important; }
+  .project-inner{ transition: none !important; }
+  .btn, .hover-lift, .pill{ transition: none !important; }
+}
+  </style>
+</head>
+
+<body>
+  <div id="top"></div>
+
+  <header class="site-header" id="topHeader">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Go to top">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span class="brand-text">Raahul</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-cta">
+        <a class="btn btn-ghost" href="assets/resume.pdf" download>Resume</a>
+        <a class="btn" href="#contact">Contact</a>
+        <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="kicker">Data Analyst / Data Scientist</p>
+          <h1>Raahul Narayana Reddy K</h1>
+          <p class="lede">
+            I build reliable data workflows and practical ML solutions — cleaning and validating messy datasets,
+            training and evaluating models, and delivering explainable results with clear, decision-ready reporting.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn hover-lift" href="assets/resume.pdf" download>Download resume</a>
+
+            <a class="btn btn-ghost icon-btn hover-lift" href="https://github.com/Knraahul" target="_blank" rel="noopener" aria-label="Open GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.55 2.87 8.41 6.84 9.77.5.1.68-.22.68-.48 0-.24-.01-.88-.01-1.72-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.12-1.5-1.12-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.9 1.55 2.36 1.1 2.94.84.09-.67.35-1.1.63-1.36-2.22-.26-4.55-1.13-4.55-5 0-1.1.39-2 1.02-2.71-.1-.26-.44-1.3.1-2.71 0 0 .84-.27 2.75 1.03.8-.23 1.65-.34 2.5-.34.85 0 1.7.12 2.5.34 1.9-1.3 2.75-1.03 2.75-1.03.54 1.41.2 2.45.1 2.71.63.71 1.02 1.61 1.02 2.71 0 3.88-2.33 4.74-4.56 5 .36.32.68.95.68 1.92 0 1.38-.01 2.5-.01 2.84 0 .27.18.59.69.48A10.16 10.16 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"/>
+              </svg>
+            </a>
+
+            <a class="btn btn-ghost icon-btn hover-lift" href="https://linkedin.com/in/raahul-narayana-reddy-k-7904a21aa" target="_blank" rel="noopener" aria-label="Open LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.48 1h.02C3.87 1 4.98 2.12 4.98 3.5zM.5 23.5h4V7.98h-4V23.5zM8 7.98h3.83v2.12h.05c.53-1 1.83-2.12 3.77-2.12 4.03 0 4.78 2.65 4.78 6.1v9.42h-4v-8.35c0-1.99-.04-4.55-2.77-4.55-2.78 0-3.2 2.17-3.2 4.41v8.49H8V7.98z"/>
+              </svg>
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <span class="pill">College Park, MD</span>
+            <span class="pill">Open to roles: Data Analyst, Data Scientist</span>
+          </div>
+        </div>
+
+        <div class="hero-card" aria-label="Quick facts">
+          <!-- CHANGE #2: performance win -->
+          <div class="avatar-wrap">
+            <img class="avatar" src="assets/Raahul_photo.jpeg" alt="Raahul portrait" loading="lazy" decoding="async" />
+          </div>
+          <div class="quick">
+            <div class="quick-item">
+              <p class="quick-label">Primary tools</p>
+              <p class="quick-value">SQL, Python, ML</p>
+            </div>
+            <div class="quick-item">
+              <p class="quick-label">Strengths</p>
+              <p class="quick-value">Data quality, modeling, evaluation</p>
+            </div>
+            <div class="quick-item">
+              <p class="quick-label">Email</p>
+              <p class="quick-value">
+                <a href="mailto:knraahul@umd.edu">knraahul@umd.edu</a><br/>
+                <a class="muted" href="mailto:knraahul@gmail.com">knraahul@gmail.com</a>
+              </p>
+            </div>
+          </div>
+          <div class="divider"></div>
+        </div>
+      </div>
+
+      <div class="hero-glow" aria-hidden="true"></div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>About</h2>
+          <p class="section-sub">A quick snapshot of what I do and what I’m looking for.</p>
+        </div>
+
+        <div class="card">
+          <p>
+            I’m a Data Analyst and aspiring Data Scientist currently pursuing an MS in Data Science at the University of Maryland.
+            I enjoy working end-to-end, from messy raw data to clear insights and reliable models.
+          </p>
+          <p>
+            At Infosys, I supported analytics-focused data work by building and improving ETL workflows, validating datasets using SQL and Python,
+            and implementing checks to isolate null/irrelevant records and reduce downstream issues. I also created error/reject handling logic
+            to make data delivery more stable and auditable.
+          </p>
+          <p style="margin-bottom:0;">
+            More recently, I’ve been expanding into machine learning and applied analytics through hands-on projects (modeling, evaluation,
+            and communicating results clearly). I’m interested in roles where I can combine strong data fundamentals with analytics and ML
+            to solve real problems.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Skills</h2>
+          <p class="section-sub">Focused, role-aligned skills for Analyst + Scientist positions.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Analytics</h3>
+            <div class="chips">
+              <span class="chip">SQL</span>
+              <span class="chip">Data Cleaning</span>
+              <span class="chip">EDA</span>
+              <span class="chip">Data Validation</span>
+              <span class="chip">Data Quality</span>
+              <span class="chip">Data Visualization</span>
+              <span class="chip">Reporting / KPIs</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Machine Learning</h3>
+            <div class="chips">
+              <span class="chip">Python</span>
+              <span class="chip">Pandas</span>
+              <span class="chip">NumPy</span>
+              <span class="chip">scikit-learn</span>
+              <span class="chip">Model Evaluation</span>
+              <span class="chip">Feature Engineering</span>
+              <span class="chip">NLP</span>
+              <span class="chip">Explainability (SHAP)</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Data Engineering</h3>
+            <div class="chips">
+              <span class="chip">ETL</span>
+              <span class="chip">Talend Open Studio</span>
+              <span class="chip">Batch Optimization</span>
+              <span class="chip">Error Handling</span>
+              <span class="chip">Documentation</span>
+              <span class="chip">Git / GitHub</span>
+              <span class="chip">Docker</span>
+              <span class="chip">APIs (FastAPI)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS (DIAGONAL + LINES + RECT CARDS) ===== -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <p class="section-sub">Hover on desktop, tap on mobile. Flip to see details.</p>
+        </div>
+
+        <div class="projects-flow" id="projectsFlow">
+          <svg class="flow-lines" id="flowSvg" aria-hidden="true"></svg>
+
+          <div class="flow-list" id="flowList">
+            <!-- 1 (left) -->
+            <div class="flow-item left">
+              <div class="flow-card" data-flow-card>
+                <article class="project-card">
+                  <!-- CHANGE #3: aria-pressed gets set in JS -->
+                  <button class="project-toggle" type="button" aria-pressed="false" aria-label="Flip project card: Student Performance Prediction System with AI Guidance">
+                    <div class="project-shell">
+                      <div class="project-inner">
+                        <div class="project-face project-front hover-lift">
+                          <div class="project-cover-blur" style="background-image:url('assets/student-performance-cover.png');"></div>
+                          <div class="project-cover" style="background-image:url('assets/student-performance-cover.png');"></div>
+
+                          <div class="project-front-content">
+                            <div class="front-pills">
+                              <span class="front-pill small">FastAPI</span>
+                              <span class="front-pill small">SHAP</span>
+                              <span class="front-pill small">Local vs Cloud</span>
+                            </div>
+                            <span class="project-hint" aria-hidden="true">Hover / tap ↺</span>
+                          </div>
+                        </div>
+
+                        <div class="project-face project-back">
+                          <div class="project-top">
+                            <div class="badges">
+                              <span class="badge">FastAPI</span>
+                              <span class="badge">SHAP</span>
+                              <span class="badge">Python</span>
+                              <span class="badge">Docs</span>
+                            </div>
+                          </div>
+
+                          <p class="project-desc">
+                            Built a FastAPI inference service with explainability, plus an AI guidance layer for actionable recommendations.
+                          </p>
+
+                          <div class="project-body">
+                            <ul class="bullets">
+                              <li>Built a local FastAPI inference API with clean request/response schemas.</li>
+                              <li>Integrated SHAP for per-prediction explainability.</li>
+                              <li>Connected predictions + SHAP outputs to an AI guidance agent for student-focused recommendations.</li>
+                              <li>Documented architecture and compared local vs cloud performance/reliability.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </article>
+              </div>
+            </div>
+
+            <!-- 2 (right) -->
+            <div class="flow-item right">
+              <div class="flow-card" data-flow-card>
+                <article class="project-card">
+                  <button class="project-toggle" type="button" aria-pressed="false" aria-label="Flip project card: Speech-to-Text for Accessibility in Education">
+                    <div class="project-shell">
+                      <div class="project-inner">
+                        <div class="project-face project-front hover-lift">
+                          <div class="project-cover-blur" style="background-image:url('assets/speech-to-text-cover.png');"></div>
+                          <div class="project-cover" style="background-image:url('assets/speech-to-text-cover.png');"></div>
+
+                          <div class="project-front-content">
+                            <div class="front-pills">
+                              <span class="front-pill small">Streamlit</span>
+                              <span class="front-pill small">Whisper CPU</span>
+                              <span class="front-pill small">BART</span>
+                              <span class="front-pill small">Docker</span>
+                            </div>
+                            <span class="project-hint" aria-hidden="true">Hover / tap ↺</span>
+                          </div>
+                        </div>
+
+                        <div class="project-face project-back">
+                          <div class="project-top">
+                            <div class="badges">
+                              <span class="badge">Streamlit</span>
+                              <span class="badge">Whisper CPU</span>
+                              <span class="badge">BART</span>
+                              <span class="badge">Docker</span>
+                            </div>
+                          </div>
+
+                          <p class="project-desc">
+                            Real-time app for continuous transcription + concise lecture summaries, built to run on CPU-only environments.
+                          </p>
+
+                          <div class="project-body">
+                            <ul class="bullets">
+                              <li>Built a real-time accessibility app that captures live audio and transcribes continuously.</li>
+                              <li>Implemented non-blocking audio capture using a callback + thread-safe queue.</li>
+                              <li>CPU-only ASR using Whisper Large V3 via Hugging Face Transformers.</li>
+                              <li>Added BART Large CNN summarization and a Streamlit UI with session storage.</li>
+                              <li>Docker deployment (port 8501) with audio passthrough support.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </article>
+              </div>
+            </div>
+
+            <!-- 3 (left) -->
+            <div class="flow-item left">
+              <div class="flow-card" data-flow-card>
+                <article class="project-card">
+                  <button class="project-toggle" type="button" aria-pressed="false" aria-label="Flip project card: Hate Speech Detection">
+                    <div class="project-shell">
+                      <div class="project-inner">
+                        <div class="project-face project-front hover-lift">
+                          <div class="project-cover-blur" style="background-image:url('assets/hate-speech-cover.png');"></div>
+                          <div class="project-cover" style="background-image:url('assets/hate-speech-cover.png');"></div>
+
+                          <div class="project-front-content">
+                            <div class="front-pills">
+                              <span class="front-pill small">NLP</span>
+                              <span class="front-pill small">TF-IDF</span>
+                              <span class="front-pill small">DistilBERT</span>
+                              <span class="front-pill small">Metrics</span>
+                            </div>
+                            <span class="project-hint" aria-hidden="true">Hover / tap ↺</span>
+                          </div>
+                        </div>
+
+                        <div class="project-face project-back">
+                          <div class="project-top">
+                            <div class="badges">
+                              <span class="badge">NLP</span>
+                              <span class="badge">TF-IDF</span>
+                              <span class="badge">Naive Bayes</span>
+                              <span class="badge">DistilBERT</span>
+                            </div>
+                          </div>
+
+                          <p class="project-desc">
+                            Built and benchmarked classic + transformer models with statistical validation, metrics, and error analysis.
+                          </p>
+
+                          <div class="project-body">
+                            <ul class="bullets">
+                              <li>Performed EDA and statistical validation (hypothesis testing, distribution analysis, Chi-Square tests).</li>
+                              <li>Built a TF-IDF + Multinomial Naive Bayes baseline using an 80/20 split.</li>
+                              <li>Evaluated with accuracy, precision, recall, F1-score, and confusion matrices.</li>
+                              <li>Benchmarked results against DistilBERT and LSTM models.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </article>
+              </div>
+            </div>
+
+            <!-- 4 (right) -->
+            <div class="flow-item right">
+              <div class="flow-card" data-flow-card>
+                <article class="project-card">
+                  <button class="project-toggle" type="button" aria-pressed="false" aria-label="Flip project card: Car Sales Analysis (Car Price Prediction)">
+                    <div class="project-shell">
+                      <div class="project-inner">
+                        <div class="project-face project-front hover-lift">
+                          <div class="project-cover-blur" style="background-image:url('assets/car-price-cover.png');"></div>
+                          <div class="project-cover" style="background-image:url('assets/car-price-cover.png');"></div>
+
+                          <div class="project-front-content">
+                            <div class="front-pills">
+                              <span class="front-pill small">Regression</span>
+                              <span class="front-pill small">Feature Eng</span>
+                              <span class="front-pill small">Tuning</span>
+                              <span class="front-pill small">RMSE</span>
+                            </div>
+                            <span class="project-hint" aria-hidden="true">Hover / tap ↺</span>
+                          </div>
+                        </div>
+
+                        <div class="project-face project-back">
+                          <div class="project-top">
+                            <div class="badges">
+                              <span class="badge">Regression</span>
+                              <span class="badge">Feature Eng</span>
+                              <span class="badge">Tuning</span>
+                              <span class="badge">Model Compare</span>
+                            </div>
+                          </div>
+
+                          <p class="project-desc">
+                            End-to-end regression pipeline with cleaning, encoding, tuning, and validation using standard error metrics.
+                          </p>
+
+                          <div class="project-body">
+                            <ul class="bullets">
+                              <li>Built a price prediction pipeline using vehicle, customer, and dealer/region features.</li>
+                              <li>Cleaned data, label-encoded categoricals, used a 70/30 train-test split (scaling where needed).</li>
+                              <li>Compared Decision Tree, Random Forest, and baseline approaches.</li>
+                              <li>Tuned key hyperparameters (max_depth, min_samples_split, criterion, n_estimators).</li>
+                              <li>Evaluated using R², MSE, RMSE with Actual vs Predicted and comparison plots.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </article>
+              </div>
+            </div>
+
+            <!-- 5 (left) -->
+            <div class="flow-item left">
+              <div class="flow-card" data-flow-card>
+                <article class="project-card">
+                  <button class="project-toggle" type="button" aria-pressed="false" aria-label="Flip project card: Statistical Analysis and Visualization of COVID-19">
+                    <div class="project-shell">
+                      <div class="project-inner">
+                        <div class="project-face project-front hover-lift">
+                          <div class="project-cover-blur" style="background-image:url('assets/covid-cover.png');"></div>
+                          <div class="project-cover" style="background-image:url('assets/covid-cover.png');"></div>
+
+                          <div class="project-front-content">
+                            <div class="front-pills">
+                              <span class="front-pill small">EDA</span>
+                              <span class="front-pill small">SEIR</span>
+                              <span class="front-pill small">SVM</span>
+                              <span class="front-pill small">Viz</span>
+                            </div>
+                            <span class="project-hint" aria-hidden="true">Hover / tap ↺</span>
+                          </div>
+                        </div>
+
+                        <div class="project-face project-back">
+                          <div class="project-top">
+                            <div class="badges">
+                              <span class="badge">EDA</span>
+                              <span class="badge">SEIR</span>
+                              <span class="badge">SVM</span>
+                              <span class="badge">Bayesian Ridge</span>
+                              <span class="badge">Viz</span>
+                            </div>
+                          </div>
+
+                          <p class="project-desc">
+                            Data collection + EDA + forecasting (SEIR + ML) with clear visuals and documented testing.
+                          </p>
+
+                          <div class="project-body">
+                            <ul class="bullets">
+                              <li>Collected and organized country/state-level COVID-19 data from official sources.</li>
+                              <li>Performed EDA and visual EDA (maps + trend analysis).</li>
+                              <li>Forecasted using SEIR-style modeling and ML (SVM, Polynomial Regression, Bayesian Ridge).</li>
+                              <li>Produced visual reports (time-series, comparisons, and diagnostic charts) and documented testing.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Experience</h2>
+          <p class="section-sub">Impact-focused highlights.</p>
+        </div>
+
+        <div class="timeline" style="display:grid; gap:14px;">
+          <div class="timeline-item card exp-card">
+            <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:10px;">
+              <div>
+                <h3 style="margin:0 0 6px;">Senior System Engineer - Infosys</h3>
+                <p class="muted small" style="margin:0;">Nov 2023 - Jul 2024 · Bengaluru, India</p>
+              </div>
+              <div class="exp-tags">
+                <span class="exp-tag accent">Data Quality</span>
+                <span class="exp-tag accent">ETL</span>
+                <span class="exp-tag accent">SQL</span>
+                <span class="exp-tag accent">Python</span>
+              </div>
+            </div>
+            <ul class="bullets">
+              <li>Cleaned, validated, and reconciled datasets using SQL and Python to improve reliability for reporting and downstream use.</li>
+              <li>Improved batch turnaround by implementing chunk-based execution, reducing heavy-load runtime from ~4–6 hours to ~2–3 hours.</li>
+              <li>Performed data profiling (null checks, duplicates, schema/format validation) and removed non-required records early to reduce rework.</li>
+              <li>Implemented reject/error workflows with traceable logs for faster troubleshooting and reprocessing.</li>
+              <li>Documented pipelines, validation rules, and edge cases to improve maintainability and handoffs.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item card exp-card">
+            <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:10px;">
+              <div>
+                <h3 style="margin:0 0 6px;">System Engineer - Infosys</h3>
+                <p class="muted small" style="margin:0;">Nov 2021 - Nov 2023 · Bengaluru, India</p>
+              </div>
+              <div class="exp-tags">
+                <span class="exp-tag accent">Production Support</span>
+                <span class="exp-tag accent">ETL</span>
+                <span class="exp-tag accent">SQL</span>
+              </div>
+            </div>
+            <ul class="bullets">
+              <li>Supported ETL and data preparation tasks and performed SQL-based checks to confirm completeness and accuracy.</li>
+              <li>Assisted in issue triage and root-cause analysis for production data problems; improved stability through validation and monitoring.</li>
+              <li>Built small automation scripts for repetitive data checks and reporting tasks to reduce manual effort.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item card exp-card">
+            <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:10px;">
+              <div>
+                <h3 style="margin:0 0 6px;">Intern - DEBEL, DRDO</h3>
+                <p class="muted small" style="margin:0;">May 2021 - Jul 2021 · Bengaluru, India</p>
+              </div>
+              <div class="exp-tags">
+                <span class="exp-tag accent">Computer Vision</span>
+                <span class="exp-tag accent">CNN</span>
+                <span class="exp-tag accent">OpenCV</span>
+              </div>
+            </div>
+            <ul class="bullets">
+              <li>Built an end-to-end skin cancer classification pipeline using TensorFlow/Keras and OpenCV, including preprocessing and reproducible splits.</li>
+              <li>Evaluated using validation accuracy and confusion matrix; performed misclassification analysis and EDA to validate dataset composition.</li>
+              <li>Focused on practical screening support in low-resource settings through image-based decision support workflows.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Education</h2>
+          <p class="section-sub">What I studied and what it trained me to do.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card edu-card">
+            <span class="status-pill"><span class="dot" aria-hidden="true"></span> Pursuing</span>
+
+            <div class="edu-head">
+              <img class="edu-logo" src="assets/umd-logo.png" alt="University of Maryland logo" loading="lazy" decoding="async" />
+              <h3 style="margin:0;">University of Maryland, College Park</h3>
+            </div>
+
+            <p class="muted small" style="margin:0 0 12px;">MS, Data Science and Analytics · Aug 2024 - May 2026</p>
+            <p>
+              Developed skills in applied machine learning, statistics, and scalable data workflows.
+              Learned to translate questions into data pipelines, evaluate models, and communicate results clearly.
+            </p>
+            <div class="chips">
+              <span class="chip">ML</span>
+              <span class="chip">Statistics</span>
+              <span class="chip">Big Data</span>
+              <span class="chip">Cloud Workflows</span>
+              <span class="chip">Python</span>
+              <span class="chip">SQL</span>
+            </div>
+          </div>
+
+          <div class="card edu-card">
+            <div class="edu-head">
+              <img class="edu-logo" src="assets/nhce-logo.png" alt="New Horizon College of Engineering logo" loading="lazy" decoding="async" />
+              <h3 style="margin:0;">New Horizon College of Engineering</h3>
+            </div>
+
+            <p class="muted small" style="margin:0 0 12px;">BE, Computer & Information Sciences · 2017 - 2021</p>
+            <p>
+              Built strong foundations in computer science through data structures, DBMS, operating systems,
+              computer networks, and software engineering, supported by project-based learning.
+            </p>
+            <div class="chips">
+              <span class="chip">DSA</span>
+              <span class="chip">DBMS</span>
+              <span class="chip">OOP</span>
+              <span class="chip">OS</span>
+              <span class="chip">Networks</span>
+              <span class="chip">Problem Solving</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="container">
+
+        <div class="contact-hero">
+          <h2>Get in touch</h2>
+          <p>For internships or full time roles in Data Analyst / Data Scientist.</p>
+        </div>
+
+        <div class="card findme-card hover-lift">
+          <div class="findme-head">
+            <h3 class="findme-title">Find Me <span class="arrow" aria-hidden="true">↘</span></h3>
+          </div>
+
+          <div class="findme-list">
+            <div class="findme-row">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 4h16v16H4z"></path>
+                <path d="M22 6l-10 7L2 6"></path>
+              </svg>
+              <strong>Email:</strong>
+              <a href="mailto:knraahul@umd.edu">knraahul@umd.edu</a>
+            </div>
+
+            <div class="findme-row">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 4h16v16H4z"></path>
+                <path d="M22 6l-10 7L2 6"></path>
+              </svg>
+              <strong>Email:</strong>
+              <a href="mailto:knraahul@gmail.com">knraahul@gmail.com</a>
+            </div>
+
+            <div class="findme-row">
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.48 1h.02C3.87 1 4.98 2.12 4.98 3.5zM.5 23.5h4V7.98h-4V23.5zM8 7.98h3.83v2.12h.05c.53-1 1.83-2.12 3.77-2.12 4.03 0 4.78 2.65 4.78 6.1v9.42h-4v-8.35c0-1.99-.04-4.55-2.77-4.55-2.78 0-3.2 2.17-3.2 4.41v8.49H8V7.98z"/>
+              </svg>
+              <strong>LinkedIn:</strong>
+              <a href="https://linkedin.com/in/raahul-narayana-reddy-k-7904a21aa" target="_blank" rel="noopener">Profile</a>
+            </div>
+
+            <div class="findme-row">
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.55 2.87 8.41 6.84 9.77.5.1.68-.22.68-.48 0-.24-.01-.88-.01-1.72-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.12-1.5-1.12-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.9 1.55 2.36 1.1 2.94.84.09-.67.35-1.1.63-1.36-2.22-.26-4.55-1.13-4.55-5 0-1.1.39-2 1.02-2.71-.1-.26-.44-1.3.1-2.71 0 0 .84-.27 2.75 1.03.8-.23 1.65-.34 2.5-.34.85 0 1.7.12 2.5.34 1.9-1.3 2.75-1.03 2.75-1.03.54 1.41.2 2.45.1 2.71.63.71 1.02 1.61 1.02 2.71 0 3.88-2.33 4.74-4.56 5 .36.32.68.95.68 1.92 0 1.38-.01 2.5-.01 2.84 0 .27.18.59.69.48A10.16 10.16 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"/>
+              </svg>
+              <strong>GitHub:</strong>
+              <a href="https://github.com/Knraahul" target="_blank" rel="noopener">github.com/Knraahul</a>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <form class="contact-form" onsubmit="return false;">
+            <label class="sr-only" for="copyEmail">Copy email</label>
+            <div class="copy-row">
+              <input id="copyEmail" type="text" value="knraahul@umd.edu" readonly />
+              <button class="btn" id="copyBtn" type="button">Copy</button>
+            </div>
+            <p class="muted small" id="copyHint" style="margin:10px 0 0;">Click copy to quickly paste into an email client.</p>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- CHANGE #4: footer moved OUTSIDE main (semantic fix) -->
+  <footer class="footer2">
+    <div class="container footer2-inner">
+      <p class="footer2-name">Raahul Narayana Reddy K</p>
+
+      <nav class="footer2-nav" aria-label="Footer">
+        <a href="#top">Home</a>
+        <a href="#about">About</a>
+        <a href="#experience">Work</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="footer2-icons" aria-label="Social links">
+        <a class="footer-icon" href="https://linkedin.com/in/raahul-narayana-reddy-k-7904a21aa" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.48 1h.02C3.87 1 4.98 2.12 4.98 3.5zM.5 23.5h4V7.98h-4V23.5zM8 7.98h3.83v2.12h.05c.53-1 1.83-2.12 3.77-2.12 4.03 0 4.78 2.65 4.78 6.1v9.42h-4v-8.35c0-1.99-.04-4.55-2.77-4.55-2.78 0-3.2 2.17-3.2 4.41v8.49H8V7.98z"/>
+          </svg>
+        </a>
+
+        <a class="footer-icon" href="https://github.com/Knraahul" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.55 2.87 8.41 6.84 9.77.5.1.68-.22.68-.48 0-.24-.01-.88-.01-1.72-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.12-1.5-1.12-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.9 1.55 2.36 1.1 2.94.84.09-.67.35-1.1.63-1.36-2.22-.26-4.55-1.13-4.55-5 0-1.1.39-2 1.02-2.71-.1-.26-.44-1.3.1-2.71 0 0 .84-.27 2.75 1.03.8-.23 1.65-.34 2.5-.34.85 0 1.7.12 2.5.34 1.9-1.3 2.75-1.03 2.75-1.03.54 1.41.2 2.45.1 2.71.63.71 1.02 1.61 1.02 2.71 0 3.88-2.33 4.74-4.56 5 .36.32.68.95.68 1.92 0 1.38-.01 2.5-.01 2.84 0 .27.18.59.69.48A10.16 10.16 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"/>
+          </svg>
+        </a>
+
+        <a class="footer-icon" href="mailto:knraahul@umd.edu" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="stroke:currentColor;">
+            <path d="M4 4h16v16H4z"></path>
+            <path d="M22 6l-10 7L2 6"></path>
+          </svg>
+        </a>
+      </div>
+
+      <p class="footer2-copy">Copyright © Raahul -- All rights reserved</p>
+    </div>
+  </footer>
+
+  <!-- floating back-to-top button (outside main) -->
+  <a class="to-top-float" id="toTopFloat" href="#top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 5l-7 7" />
+      <path d="M12 5l7 7" />
+      <path d="M12 5v14" />
+    </svg>
+  </a>
+
+  <script>
+(function(){
+  document.documentElement.style.scrollBehavior = 'smooth';
+
+  // Copy email
+  const btn = document.getElementById('copyBtn');
+  const inp = document.getElementById('copyEmail');
+  const hint = document.getElementById('copyHint');
+  if (btn && inp){
+    btn.addEventListener('click', async () => {
+      try{
+        await navigator.clipboard.writeText(inp.value);
+        if (hint) hint.textContent = 'Copied ✓';
+        btn.textContent = 'Copied';
+        setTimeout(() => {
+          if (hint) hint.textContent = 'Click copy to quickly paste into an email client.';
+          btn.textContent = 'Copy';
+        }, 1600);
+      }catch(e){
+        inp.select();
+        document.execCommand('copy');
+        if (hint) hint.textContent = 'Copied ✓';
+      }
+    });
+  }
+
+  // Mobile nav
+  const burger = document.querySelector('.hamburger');
+  const nav = document.querySelector('.nav');
+  if (burger && nav){
+    burger.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    nav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        nav.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // Scroll reveal (appear when in view, disappear when out)
+  const revealTargets = document.querySelectorAll('.card, .section-head, .hero-copy, .hero-card, .projects-flow, .flow-item');
+  revealTargets.forEach(el => el.classList.add('reveal'));
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+      else entry.target.classList.remove('visible');
+    });
+  }, { threshold: 0.18, rootMargin: "0px 0px -10% 0px" });
+
+  revealTargets.forEach(el => io.observe(el));
+
+  // CHANGE #5: Flip on tap + make it keyboard + aria-pressed synced
+  document.querySelectorAll('.project-card').forEach(card => {
+    const toggle = card.querySelector('.project-toggle');
+    if (!toggle) return;
+
+    // initial state
+    toggle.setAttribute('aria-pressed', card.classList.contains('flipped') ? 'true' : 'false');
+
+    toggle.addEventListener('click', () => {
+      const flipped = card.classList.toggle('flipped');
+      toggle.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+    });
+
+    toggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle.click();
+      }
+    });
+  });
+
+  // Floating back-to-top show/hide
+  const toTop = document.getElementById('toTopFloat');
+  function updateToTop(){
+    const y = window.scrollY || document.documentElement.scrollTop || 0;
+    if (!toTop) return;
+    if (y > 320) toTop.classList.add('show');
+    else toTop.classList.remove('show');
+  }
+  window.addEventListener('scroll', updateToTop, { passive:true });
+  window.addEventListener('load', updateToTop, { once:true });
+  updateToTop();
+
+  // ===== Draw diagonal connector lines OUTSIDE cards =====
+  const flow = document.getElementById('projectsFlow');
+  const svg = document.getElementById('flowSvg');
+  const cards = Array.from(document.querySelectorAll('[data-flow-card]'));
+  if (!flow || !svg || cards.length < 2) return;
+
+  function clearSvg(){
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+  }
+
+  function setSvgSize(){
+    const r = flow.getBoundingClientRect();
+    svg.setAttribute('width', r.width);
+    svg.setAttribute('height', r.height);
+    svg.setAttribute('viewBox', `0 0 ${r.width} ${r.height}`);
+  }
+
+  function localRect(el){
+    const a = el.getBoundingClientRect();
+    const b = flow.getBoundingClientRect();
+    return {
+      left: a.left - b.left,
+      top: a.top - b.top,
+      width: a.width,
+      height: a.height,
+      right: a.left - b.left + a.width,
+      bottom: a.top - b.top + a.height
+    };
+  }
+
+  const cssLinePad = () => {
+    const v = getComputedStyle(document.documentElement).getPropertyValue('--line-pad').trim();
+    const n = parseFloat(v);
+    return Number.isFinite(n) ? n : 18;
+  };
+
+  function rightCenter(r, pad){ return { x: r.right + pad, y: r.top + r.height/2 }; }
+  function topCenter(r, pad){ return { x: r.left + r.width/2, y: r.top - pad }; }
+  function bottomCenter(r, pad){ return { x: r.left + r.width/2, y: r.bottom + pad }; }
+
+  function curvePath(p1, p2){
+    const dx = p2.x - p1.x;
+    const dy = p2.y - p1.y;
+    const c1 = { x: p1.x + dx*0.33, y: p1.y + dy*0.10 };
+    const c2 = { x: p1.x + dx*0.67, y: p1.y + dy*0.90 };
+    return `M ${p1.x} ${p1.y} C ${c1.x} ${c1.y}, ${c2.x} ${c2.y}, ${p2.x} ${p2.y}`;
+  }
+
+  function addPath(d, stroke){
+    const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d', d);
+    p.setAttribute('fill', 'none');
+    p.setAttribute('stroke', stroke);
+    p.setAttribute('stroke-width', '3');
+    p.setAttribute('stroke-linecap', 'round');
+    p.setAttribute('opacity', '0.9');
+    svg.appendChild(p);
+
+    const g = document.createElementNS('http://www.w3.org/2000/svg','path');
+    g.setAttribute('d', d);
+    g.setAttribute('fill', 'none');
+    g.setAttribute('stroke', stroke);
+    g.setAttribute('stroke-width', '10');
+    g.setAttribute('stroke-linecap', 'round');
+    g.setAttribute('opacity', '0.10');
+    svg.appendChild(g);
+  }
+
+  function addDot(pt, fill){
+    const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx', pt.x);
+    c.setAttribute('cy', pt.y);
+    c.setAttribute('r', '7');
+    c.setAttribute('fill', fill);
+    c.setAttribute('opacity', '0.95');
+    svg.appendChild(c);
+
+    const ring = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    ring.setAttribute('cx', pt.x);
+    ring.setAttribute('cy', pt.y);
+    ring.setAttribute('r', '12');
+    ring.setAttribute('fill', 'none');
+    ring.setAttribute('stroke', fill);
+    ring.setAttribute('stroke-width', '2');
+    ring.setAttribute('opacity', '0.25');
+    svg.appendChild(ring);
+  }
+
+  function draw(){
+    clearSvg();
+    setSvgSize();
+
+    const pad = cssLinePad();
+    const flowItems = Array.from(document.querySelectorAll('.flow-item'));
+
+    for (let i=0; i<cards.length-1; i++){
+      const curr = localRect(cards[i]);
+      const next = localRect(cards[i+1]);
+
+      const currIsLeft = flowItems[i]?.classList.contains('left');
+
+      const start = currIsLeft ? rightCenter(curr, pad) : bottomCenter(curr, pad);
+      const end   = currIsLeft ? topCenter(next, pad)   : rightCenter(next, pad);
+
+      const stroke = currIsLeft ? 'rgba(101,214,196,0.95)' : 'rgba(122,167,255,0.95)';
+
+      addPath(curvePath(start, end), stroke);
+      addDot(start, 'rgba(101,214,196,0.95)');
+      addDot(end, 'rgba(122,167,255,0.95)');
+    }
+  }
+
+  let raf = null;
+  function scheduleDraw(){
+    if (raf) return;
+    raf = requestAnimationFrame(() => { raf = null; draw(); });
+  }
+
+  window.addEventListener('resize', scheduleDraw, { passive:true });
+  window.addEventListener('scroll', scheduleDraw, { passive:true });
+  window.addEventListener('load', () => { draw(); }, { once:true });
+
+  draw();
+})();
+  </script>
+</body>
+</html>
