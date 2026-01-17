@@ -25,16 +25,16 @@
   --container: 1100px;
 
   /* ===== Projects (DIAGONAL FLOW + BIG RECT CARDS) ===== */
-  --card-w: 520px;   /* bigger + rectangular */
-  --card-h: 300px;   /* bigger + rectangular */
-  --diag-step: 130px; /* moved right cards a bit LEFT (was 160) */
-  --diag-gap: 80px;   /* vertical spacing */
-  --line-pad: 18px;   /* push line endpoints outside card edges */
+  --card-w: 520px;    /* desktop */
+  --card-h: 300px;    /* desktop */
+  --diag-step: 130px; /* desktop */
+  --diag-gap: 80px;
+  --line-pad: 18px;
 }
 
 *{ box-sizing: border-box; }
 html,body{ margin:0; padding:0; }
-/* CHANGE #1: prevent tiny horizontal scroll from SVG/transforms */
+/* prevent tiny horizontal scroll from SVG/transforms */
 html, body{ overflow-x: hidden; }
 
 body{
@@ -860,18 +860,55 @@ a:hover{ text-decoration: underline; }
     border-bottom: 1px solid var(--border);
   }
 
-  /* Projects: center cards on mobile and avoid overflow */
-  :root{
-    --card-w: min(92vw, 560px);
-    --card-h: calc(var(--card-w) * 0.62);
-    --diag-step: 0px;
-    --diag-gap: 56px;
-    --line-pad: 14px;
-  }
-  .flow-item{ justify-content: center !important; }
-  .flow-item.right .flow-card{ transform: none; }
-
   .section-sub{ text-align: left; margin-top: 6px; }
+}
+
+/* ===== MOBILE FIXES (from your screenshots) ===== */
+@media (max-width: 760px){
+
+  /* Projects: hide SVG connector lines on phone (cleaner) */
+  .flow-lines{ display: none !important; }
+
+  /* Center cards on mobile and avoid diagonal overflow */
+  .flow-item{ justify-content: center !important; }
+  .flow-item.right .flow-card{ transform: none !important; }
+
+  /* Project pills smaller so they don't cover the image */
+  .front-pill.small{
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+  .project-hint{
+    font-size: 11px;
+    padding: 6px 9px;
+  }
+
+  /* Education: fix "Pursuing" overlapping title */
+  .edu-card{ padding-top: 18px; }
+  .status-pill{
+    position: static;
+    margin: 0 0 10px auto;
+    width: fit-content;
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+  .edu-head{
+    align-items: flex-start;
+  }
+  .edu-head h3{
+    line-height: 1.2;
+    font-size: 16px;
+  }
+
+  /* Back-to-top button: don't cover content */
+  main{ padding-bottom: 100px; }
+  .to-top-float{
+    width: 54px;
+    height: 54px;
+    right: 14px;
+    bottom: calc(14px + env(safe-area-inset-bottom));
+    border-radius: 16px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -946,7 +983,6 @@ a:hover{ text-decoration: underline; }
         </div>
 
         <div class="hero-card" aria-label="Quick facts">
-          <!-- CHANGE #2: performance win -->
           <div class="avatar-wrap">
             <img class="avatar" src="assets/Raahul_photo.jpeg" alt="Raahul portrait" loading="lazy" decoding="async" />
           </div>
@@ -1068,7 +1104,6 @@ a:hover{ text-decoration: underline; }
             <div class="flow-item left">
               <div class="flow-card" data-flow-card>
                 <article class="project-card">
-                  <!-- CHANGE #3: aria-pressed gets set in JS -->
                   <button class="project-toggle" type="button" aria-pressed="false" aria-label="Flip project card: Student Performance Prediction System with AI Guidance">
                     <div class="project-shell">
                       <div class="project-inner">
@@ -1523,7 +1558,6 @@ a:hover{ text-decoration: underline; }
     </section>
   </main>
 
-  <!-- CHANGE #4: footer moved OUTSIDE main (semantic fix) -->
   <footer class="footer2">
     <div class="container footer2-inner">
       <p class="footer2-name">Raahul Narayana Reddy K</p>
@@ -1561,7 +1595,6 @@ a:hover{ text-decoration: underline; }
     </div>
   </footer>
 
-  <!-- floating back-to-top button (outside main) -->
   <a class="to-top-float" id="toTopFloat" href="#top" aria-label="Back to top">
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M12 5l-7 7" />
@@ -1626,12 +1659,11 @@ a:hover{ text-decoration: underline; }
 
   revealTargets.forEach(el => io.observe(el));
 
-  // CHANGE #5: Flip on tap + make it keyboard + aria-pressed synced
+  // Flip on tap + keyboard + aria-pressed synced
   document.querySelectorAll('.project-card').forEach(card => {
     const toggle = card.querySelector('.project-toggle');
     if (!toggle) return;
 
-    // initial state
     toggle.setAttribute('aria-pressed', card.classList.contains('flipped') ? 'true' : 'false');
 
     toggle.addEventListener('click', () => {
@@ -1779,6 +1811,7 @@ a:hover{ text-decoration: underline; }
 
   window.addEventListener('resize', scheduleDraw, { passive:true });
   window.addEventListener('scroll', scheduleDraw, { passive:true });
+  window.addEventListener('orientationchange', scheduleDraw, { passive:true }); // latest add
   window.addEventListener('load', () => { draw(); }, { once:true });
 
   draw();
