@@ -744,3 +744,8 @@ if(card)card.style.translate='';
 /* Fix: the hero-name gradient override reset background-clip; restore text clipping. */
 .hero-name .grad{-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
 </style>
+<style>
+/* Fix: portrait ring/size need .cloud-card .portrait specificity to beat the main rule. */
+.cloud-card .portrait{width:150px;height:150px;border:7px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#4338ca,#7c3aed 45%,#f59e0b) border-box;box-shadow:0 14px 34px rgba(67,56,202,.35),0 0 0 10px rgba(255,255,255,.45)}
+@media (max-width:640px){.cloud-card .portrait{width:128px;height:128px}}
+</style>
