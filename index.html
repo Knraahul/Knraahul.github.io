@@ -635,3 +635,43 @@ h1 .grad{background:linear-gradient(92deg,var(--forest) 5%,var(--leaf) 45%,var(-
 .face-back ul{font-size:.9rem}
 .face-back li{margin-bottom:5px}
 </style>
+<style>
+/* === THREE STRICT BANDS (clarification) ===
+   1. Sky: clouds only. 2. Tree only: leafy canopy, wavy bark trunk,
+   curved bark branch connectors, fruit cards. 3. Roots and mud:
+   experience grows from the roots; Skills, Why hire me, Education,
+   Contact and footer sit on clean cards against mud.
+   Ghost-title fix: the cover photos have their project title baked
+   into the top of the image, so the card title now sits on a solid
+   dark-green backing that hides the baked-in text. */
+.hero{background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.05) 50%,rgba(255,255,255,.35) 78%,rgba(255,255,255,.88) 100%),url("assets/image-2d597f29.png") center 18%/cover}
+.tree-section{padding-bottom:0;background:radial-gradient(ellipse 60% 90px at 18% 0%,rgba(93,168,90,.16),transparent),radial-gradient(ellipse 55% 80px at 82% 0%,rgba(125,191,106,.16),transparent),linear-gradient(180deg,#fdfbf0 0%,#f8f4de 55%,#f4efdb 100%)}
+.tree-svg{width:min(880px,100%)}
+:root{--card-w:480px}
+.flow-line{top:0;bottom:0;width:38px;opacity:1;border-radius:16px;clip-path:polygon(12% 0%,88% 0%,96% 12%,82% 24%,94% 38%,80% 50%,94% 64%,82% 76%,92% 88%,86% 100%,14% 100%,8% 88%,20% 76%,6% 62%,18% 50%,6% 36%,20% 24%,8% 12%);background:radial-gradient(circle at 50% 20%,rgba(61,42,26,.55) 0 5px,transparent 6px),radial-gradient(circle at 44% 55%,rgba(61,42,26,.5) 0 4px,transparent 5px),radial-gradient(circle at 58% 82%,rgba(61,42,26,.5) 0 5px,transparent 6px),linear-gradient(90deg,#3d2a1a,#8a6a44 35%,#6b4a2f 60%,#3d2a1a)}
+.project::after{top:48px;width:84px;height:11px;border-radius:50%;background:radial-gradient(circle at 10% 50%,#5da85a 0 6px,rgba(93,168,90,0) 7px),linear-gradient(90deg,#5a4128 0%,#8a6a44 55%,rgba(138,106,68,0) 100%);border:none;box-shadow:none}
+.project:nth-of-type(odd)::after{right:-78px;transform:rotate(-8deg);transform-origin:left center}
+.project:nth-of-type(even)::after{left:-78px;transform:rotate(8deg);transform-origin:right center;background:radial-gradient(circle at 90% 50%,#5da85a 0 6px,rgba(93,168,90,0) 7px),linear-gradient(270deg,#5a4128 0%,#8a6a44 55%,rgba(138,106,68,0) 100%)}
+.card-title{background:linear-gradient(180deg,#1e4d2b 0%,#1e4d2b 88%,rgba(30,77,43,0) 100%)}
+.fields{background:none}
+.roots-section,.why,.about,.skills,.education,.contact{background-color:#6f4e2e;background-image:radial-gradient(rgba(0,0,0,.06) 1.5px,transparent 2px),radial-gradient(rgba(255,255,255,.05) 1.5px,transparent 2px);background-size:90px 90px,130px 130px;background-position:0 0,45px 60px}
+.roots-section{padding-top:0}
+.roots-section .container{display:flex;flex-direction:column}
+.roots-section .roots-svg{order:-1;margin-top:0}
+.roots-section .section-title{align-self:flex-start}
+.roots-svg path{stroke:#e0b183}
+.roots-svg>path:first-child{stroke-width:22}
+.roots-section .section-title,.why .section-title,.about .section-title,.skills .section-title,.education .section-title{color:#fdf6e3}
+.roots-section .section-sub,.why .section-sub,.about .section-sub,.skills .section-sub,.education .section-sub{color:#e9dcc2}
+.about p{color:#f0e4cb}
+.about p strong{color:#ffe9b0}
+.skills .skill-head{color:#fdf6e3}
+.why::after{background:radial-gradient(closest-side,rgba(245,158,11,.20),transparent)}
+.timeline::before{width:8px;background:linear-gradient(180deg,#e0b183,#8a6a44 55%,#5f4128);border-radius:6px}
+.tl-item::before{background:#e0b183;border-color:#8a6a44;box-shadow:0 0 0 3px rgba(224,177,131,.35)}
+.site-footer{background:#33241a}
+.site-footer .footer-nav a{color:#d8c9a8}
+.site-footer .footer-social a{color:#d8c9a8}
+.site-footer .footer-base{color:#b39a78}
+.site-footer .footer-base a{color:#e8dcc8}
+</style>
