@@ -627,3 +627,11 @@ h1 .grad{background:linear-gradient(92deg,var(--forest) 5%,var(--leaf) 45%,var(-
 .qf-value a{color:var(--leaf);overflow-wrap:anywhere}
 .qf-divider{height:1px;background:var(--border2);margin-top:16px}
 </style>
+<style>
+/* Flip-card fix: keep the back face fully hidden until the card is flipped, so its title cannot show through as a ghost above the front cover. The back appears mid-flip (0.35s into the 0.7s turn). Also give the back a little more room so its content fits. */
+.face-back{visibility:hidden;transition:visibility 0s .35s}
+.project:hover .face-back,.project:focus-within .face-back,.project.flipped .face-back{visibility:visible}
+:root{--card-h:320px}
+.face-back ul{font-size:.9rem}
+.face-back li{margin-bottom:5px}
+</style>
