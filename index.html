@@ -740,3 +740,7 @@ if(card)card.style.translate='';
 });
 })();
 </script>
+<style>
+/* Fix: the hero-name gradient override reset background-clip; restore text clipping. */
+.hero-name .grad{-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+</style>
